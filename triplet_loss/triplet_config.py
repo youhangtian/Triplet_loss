@@ -1,4 +1,0 @@
-BATCH_SIZE = 50
-CUT_SIZE = 5
-
-MARGIN = 0.1
