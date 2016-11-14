@@ -5,4 +5,4 @@ This is triplet loss implementation according to Google's paper.
 ##Config
 
 Set parameters in train/config.py.
-Use src/train.py to train the model.
+Use train/train.py to train the model.
