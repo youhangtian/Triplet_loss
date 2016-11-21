@@ -1,14 +1,13 @@
 import numpy as np 
 import cv2
 
-def img_to_blob(img):
-	target_size = 224
+def img_to_blob(img, img_width, img_height):
 	means = np.array([[[128, 128, 128]]])
 
 	img = img.astype(np.float32, copy=False)
 	img -= means
 
-	img = cv2.resize(img, (target_size, target_size), interpolation=cv2.INTER_LINEAR)
+	img = cv2.resize(img, (img_width, img_height), interpolation=cv2.INTER_LINEAR)
 
 	blob = np.copy(img)
 
