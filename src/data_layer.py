@@ -48,7 +48,7 @@ class DataLayer(caffe.Layer):
 				img = img[:, ::-1, :]
 
 			labels_blob.append(label)
-			imgs_blob.append(img_process.img_to_blob(img))
+			imgs_blob.append(img_process.img_to_blob(img, self._img_width, self._img_height))
 
 		return np.array(imgs_blob), np.array(labels_blob)
 
@@ -65,7 +65,10 @@ class DataLayer(caffe.Layer):
 		self._batch_size = config.BATCH_SIZE 
 		self._cut_size = config.CUT_SIZE 
 
-		top[0].reshape(self._batch_size, 3, 224, 224)
+		self._img_width = config.IMG_WIDTH
+		self._img_height = config.IMG_HEIGHT 
+
+		top[0].reshape(self._batch_size, 3, self._img_height, self._img_width)
 		top[1].reshape(self._batch_size)
 
 	def forward(self, bottom, top):
