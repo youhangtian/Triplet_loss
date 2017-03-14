@@ -1,4 +1,4 @@
-net: "../models/inception21k_conv2/inception21k_train.prototxt"
+net: "../models/inception21k_conv/inception21k_train.prototxt"
 base_lr: 0.001
 lr_policy: "step"
 gamma: 0.1
