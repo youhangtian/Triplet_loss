@@ -1,6 +1,6 @@
 # Triplet_loss
 
-This is triplet loss implementation according to Google's paper.
+This is a triplet loss implementation.
 
 ##Config
 
