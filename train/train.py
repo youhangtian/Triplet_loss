@@ -39,14 +39,14 @@ if __name__ == '__main__':
 	use_gpu = config.USE_GPU
 	device_id = config.DEVICE_ID
 
+	use_lmdb = config.USE_LMDB
 	lmdb_path = config.LMDB_PATH 
-	folders_path = config.FOLDERS_PATH 
-	use_lmdb = config.USE_LMDB 
+	data_file = config.DATA_FILE
 
 	if use_lmdb == 1:
 		sampledata = sampledata_lmdb(lmdb_path)
 	else:
-		sampledata = sampledata_disk(folders_path)
+		sampledata = sampledata_disk(data_file)
 
 	sw = SolverWrapper(solver, trained_file, use_gpu, device_id, sampledata)
 
