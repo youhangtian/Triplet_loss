@@ -44,6 +44,10 @@ class DataLayer(caffe.Layer):
 
 		for i in xrange(self._batch_size):
 			img, label = self._sampledata.get_image(sample[i][0])
+
+			if (img is None):
+				continue
+
 			if (sample[i][1] == 1):
 				img = img[:, ::-1, :]
 
@@ -73,6 +77,9 @@ class DataLayer(caffe.Layer):
 
 	def forward(self, bottom, top):
 		imgs_blob, labels_blob = self._get_next_batch()
+
+		top[0].reshape(len(imgs_blob), 3, self._img_height, self._img_width)
+		top[1].reshape(len(imgs_blob))
 
 		top[0].data[...] = imgs_blob
 		top[1].data[...] = labels_blob
