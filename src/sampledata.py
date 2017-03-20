@@ -2,9 +2,10 @@ import os
 import numpy as np 
 
 import caffe
-import lmdb
-
 import cv2
+
+
+import lmdb
 
 class sampledata_lmdb():
 	def __init__(self, lmdb_path):
@@ -51,22 +52,25 @@ class sampledata_disk():
 
 		count = 0
 
-		for num, folder_name in enumerate(sorted(os.listdir(folders_path))):
-			img_names = os.listdir(folders_path + '/' + folder_name)
+		with open(folders_path) as f:
+			for line in f.readlines():
+				line = line.strip()
+				arr = line.split()
 
-			label = num
-			self._sample_table[label] = []
+				p = arr[0]
+				label = int(arr[1])
 
-			for i in xrange(len(img_names)):
-				path = folders_path + '/' + folder_name + '/' + img_names[i]
-				self._sample_table[label].append([path, 0])
-				self._sample_table[label].append([path, 1])
+				if not self._sample_table.has_key(label):
+					self._sample_table[label] = []
 
-				self._sample_label[path] = label
+				self._sample_table[label].append([p, 0])
+				self._sample_table[label].append([p, 1])
+
+				self._sample_label[p] = label
 
 				count += 1
 				if (count % 100000 == 0):
-					print 'sample count:', count
+					print 'sample count: ', count
 
 		print 'Number of classes:', len(self._sample_table)
 		print 'Number of training images:', count, len(self._sample_label)
