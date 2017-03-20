@@ -2,7 +2,7 @@
 CAFFEPATH = '/home/xiaotian/caffe'
 
 SOLVER = '../models/inception21k_conv/inception21k_solver.prototxt'
-TRAINED_FILE = '/home/xiaotian/models/googlenet/Inception21k.caffemodel'
+TRAINED_FILE = 'Inception21k.caffemodel'
 USE_GPU = 1
 DEVICE_ID = 1
 
