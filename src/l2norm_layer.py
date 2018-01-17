@@ -15,7 +15,8 @@ class L2NormLayer(caffe.Layer):
 			norm = np.linalg.norm(bottom[0].data, axis=1)[:, np.newaxis]
 			td = top[0].diff
 			bd = bottom[0].data
-			bottom_n2 = td * norm - (bd * td).sum(axis=1)[:, np.newaxis] * bd / norm
+			#bottom_n2 = td * norm - (bd * td).sum(axis=1)[:, np.newaxis] * bd / norm
+			bottom_n2 = td * norm - (bd * td).sum(axis=1)[:, np.newaxis] * bd
 			bottom_n2 /= norm ** 2
 
 			bottom[0].diff[...] = bottom_n2
